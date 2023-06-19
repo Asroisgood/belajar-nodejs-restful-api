@@ -15,7 +15,7 @@ const createTestUser = async () => {
       username: 'test',
       password: await bcrypt.hash('rahasia', 10),
       name: 'Nama Test',
-      token: 'test',
+      token: 'testToken',
     },
   })
 }
