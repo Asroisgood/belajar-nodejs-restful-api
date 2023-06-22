@@ -1,5 +1,6 @@
 import { request } from 'express'
 import userService from '../service/user-service.js'
+import contactService from '../service/contact-service.js'
 
 const register = async (req, res, next) => {
   try {
