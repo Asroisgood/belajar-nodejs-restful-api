@@ -54,7 +54,7 @@ describe('POST /api/contacts', () => {
   })
 })
 
-describe('GET /api/contacts', () => {
+describe('GET /api/contacts/:contactId', () => {
   beforeEach(async () => {
     await createTestUser()
     await createTestContact()
@@ -153,6 +153,41 @@ describe('PUT /api/contacts/:contactId', () => {
         email: 'asro.isgood@gmail.com',
         phone: '0895422988808',
       })
+
+    expect(result.status).toBe(404)
+    expect(result.body.errors).toBeDefined()
+  })
+})
+
+describe('DELETE /api/contacts/:contactId', () => {
+  beforeEach(async () => {
+    await createTestUser()
+    await createTestContact()
+  })
+
+  afterEach(async () => {
+    await removeAllTestContacts()
+    await removeTestUser()
+  })
+
+  it('should can remove contact', async () => {
+    let testContact = await getTestContact()
+    const result = await supertest(web)
+      .delete('/api/contacts/' + testContact.id)
+      .set('Authorization', 'testToken')
+
+    expect(result.status).toBe(200)
+    expect(result.body.data).toBe('OK')
+
+    testContact = await getTestContact()
+    expect(testContact).toBeNull()
+  })
+
+  it('should reject if contact is not found', async () => {
+    const testContact = await getTestContact()
+    const result = await supertest(web)
+      .delete('/api/contacts/' + (testContact.id + 1))
+      .set('Authorization', 'testToken')
 
     expect(result.status).toBe(404)
     expect(result.body.errors).toBeDefined()
