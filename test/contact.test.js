@@ -91,3 +91,70 @@ describe('GET /api/contacts', () => {
     expect(result.body.errors).toBeDefined()
   })
 })
+
+describe('PUT /api/contacts/:contactId', () => {
+  beforeEach(async () => {
+    await createTestUser()
+    await createTestContact()
+  })
+
+  afterEach(async () => {
+    await removeAllTestContacts()
+    await removeTestUser()
+  })
+
+  it('should can update existing contact', async () => {
+    const testContact = await getTestContact()
+
+    const result = await supertest(web)
+      .put('/api/contacts/' + testContact.id)
+      .set('Authorization', 'testToken')
+      .send({
+        first_name: 'Arief',
+        last_name: "Asro'i",
+        email: 'asro.isgood@gmail.com',
+        phone: '0895422988808',
+      })
+
+    expect(result.status).toBe(200)
+    expect(result.body.data.id).toBe(testContact.id)
+    expect(result.body.data.first_name).toBe('Arief')
+    expect(result.body.data.last_name).toBe("Asro'i")
+    expect(result.body.data.email).toBe('asro.isgood@gmail.com')
+    expect(result.body.data.phone).toBe('0895422988808')
+  })
+
+  it('should reject if request is invalid', async () => {
+    const testContact = await getTestContact()
+
+    const result = await supertest(web)
+      .put('/api/contacts/' + testContact.id)
+      .set('Authorization', 'testToken')
+      .send({
+        first_name: '',
+        last_name: '',
+        email: 'iniBukanEmail',
+        phone: 'nomorSalah',
+      })
+
+    expect(result.status).toBe(400)
+    expect(result.body.errors).toBeDefined()
+  })
+
+  it('should reject if contact is not found', async () => {
+    const testContact = await getTestContact()
+
+    const result = await supertest(web)
+      .put('/api/contacts/' + (testContact.id + 1))
+      .set('Authorization', 'testToken')
+      .send({
+        first_name: 'Arief',
+        last_name: "Asro'i",
+        email: 'asro.isgood@gmail.com',
+        phone: '0895422988808',
+      })
+
+    expect(result.status).toBe(404)
+    expect(result.body.errors).toBeDefined()
+  })
+})
