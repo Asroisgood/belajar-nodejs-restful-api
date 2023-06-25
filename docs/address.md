@@ -45,7 +45,7 @@ Response Body Error :
 
 ## Update Address API
 
-Endpoint : PUT /api/contacts/:addressId/addresses
+Endpoint : PUT /api/contacts/:contactId/address/:addressId
 
 Headers :
 
