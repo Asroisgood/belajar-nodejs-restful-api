@@ -74,8 +74,6 @@ describe('POST /api/users/login', () => {
       password: 'rahasia',
     })
 
-    logger.info(result.body)
-
     expect(result.status).toBe(200)
     expect(result.body.data.token).toBeDefined()
     expect(result.body.data.token).not.toBe('test')

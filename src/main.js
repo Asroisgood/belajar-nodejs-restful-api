@@ -1,6 +1,6 @@
 import { web } from './application/web.js'
 import { logger } from './application/logging.js'
 
-web.listen(300, () => {
-  logger.info('Listening to port 300 ...')
+web.listen(3000, () => {
+  logger.info('Listening to port 3000 ...')
 })

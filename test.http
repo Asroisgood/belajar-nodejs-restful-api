@@ -1,0 +1,133 @@
+### REGISTER
+POST http://localhost:3000/api/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username" : "apa",
+  "password" : "rahasia",
+  "name" : "Arief Asro'i"
+}
+
+### LOGIN
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "username": "arief",
+    "password": "rahasia"
+}
+
+### GET USER
+GET http://localhost:3000/api/users/current
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+
+### EDIT USER
+PATCH http://localhost:3000/api/users/current
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+{
+  "name" : "Arief Aja"
+}
+
+### LOGOUT
+DELETE http://localhost:3000/api/users/logout
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+### ADD CONTACT
+POST http://localhost:3000/api/contacts
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+{
+  "first_name": "My",
+  "last_name": "3",
+  "email": "emailku@gmail.com",
+  "phone": "0895422988808"
+}
+
+### GET ALL CONTACTS
+GET http://localhost:3000/api/contacts
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+### GET SPECIFIC CONTACT
+GET http://localhost:3000/api/contacts/222
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+### EDIT CONTACT
+PUT http://localhost:3000/api/contacts/785
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+{
+    "first_name": "Nomerku",
+    "last_name": "3",
+    "email": "asroi@gmail.com",
+    "phone": "0895422988808"
+}
+
+### DELETE CONTACT
+DELETE http://localhost:3000/api/contacts/785
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+### ADD ADDRESS
+POST http://localhost:3000/api/contacts/786/addresses
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+{
+  "street": "Jalan jalan",
+  "city": "Semarang",
+  "province": "Jawa Tengah",
+  "country": "Indonesia",
+  "postal_code": "12123"
+}
+
+### LIST ADDRESSES
+GET http://localhost:3000/api/contacts/786/addresses
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+### GET SPECIFIC ADDRESS
+GET http://localhost:3000/api/contacts/786/addresses/191
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+
+### EDIT ADDRESS
+PUT http://localhost:3000/api/contacts/786/addresses/191
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
+
+{
+  "street": "Jalan lurus itu",
+  "city": "Kabupaten Semarang",
+  "province": "Jawa Tengah",
+  "country": "Indonesia",
+  "postal_code": "12123"
+}
+
+### DELETE ADDRESS
+DELETE http://localhost:3000/api/contacts/786/addresses/191
+Content-Type: application/json
+Accept: application/json
+Authorization: 7113ba96-5c33-4632-af49-7f893222dd80
